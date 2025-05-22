@@ -1,10 +1,17 @@
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Logo from "@/assets/svg/logo.svg";
+import { styled } from "styled-components/native";
 
 export default function Index() {
   return (
-    <SafeAreaView>
-      <Text>Teste</Text>
-    </SafeAreaView>
+    <CenterView>
+      <Logo />
+    </CenterView>
   );
 }
+
+const CenterView = styled.View`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
