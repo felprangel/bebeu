@@ -14,12 +14,41 @@ export default function Index() {
       }}
     >
       <Logo />
-      <View style={{ marginTop: 40, width: 300, height: 400 }}>
+      <View
+        style={{
+          marginTop: 40,
+          width: 300,
+          height: 400,
+          gap: 30,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Input placeholder="Email" />
         <Input placeholder="Senha" />
-        <TouchableHighlight style={{ backgroundColor: colors.primary }}>
+        <TouchableHighlight
+          style={{
+            backgroundColor: colors.primary,
+            borderRadius: 10,
+            height: 40,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: 150,
+          }}
+        >
           <Text style={{ color: colors.text.contrast }}>Login</Text>
         </TouchableHighlight>
+        <Text
+          style={{
+            color: colors.text.default,
+            textDecorationLine: "underline",
+            textAlign: "center",
+          }}
+        >
+          Registre-se
+        </Text>
       </View>
     </View>
   );
