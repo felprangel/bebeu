@@ -1,11 +1,17 @@
 import { colors } from "@/assets/styles/colors";
 import Logo from "@/assets/svg/logo.svg";
 import { Text, TextInput, TouchableHighlight, View } from "react-native";
-import { styled } from "styled-components/native";
 
 export default function Index() {
   return (
-    <CenterView>
+    <View
+      style={{
+        display: "flex",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Logo />
       <View style={{ marginTop: 40, width: 300, height: 400 }}>
         <TextInput placeholder="Email" />
@@ -14,13 +20,6 @@ export default function Index() {
           <Text style={{ color: colors.text.contrast }}>Login</Text>
         </TouchableHighlight>
       </View>
-    </CenterView>
+    </View>
   );
 }
-
-const CenterView = styled.View`
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
