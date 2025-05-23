@@ -1,7 +1,8 @@
 import { colors } from "@/assets/styles/colors";
 import Logo from "@/assets/svg/logo.svg";
+import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
-import { Text, TouchableHighlight, View } from "react-native";
+import { Text, View } from "react-native";
 
 export default function Index() {
   return (
@@ -27,19 +28,9 @@ export default function Index() {
       >
         <Input placeholder="Email" />
         <Input placeholder="Senha" />
-        <TouchableHighlight
-          style={{
-            backgroundColor: colors.primary,
-            borderRadius: 10,
-            height: 40,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: 150,
-          }}
-        >
+        <Button>
           <Text style={{ color: colors.text.contrast }}>Login</Text>
-        </TouchableHighlight>
+        </Button>
         <Text
           style={{
             color: colors.text.default,
