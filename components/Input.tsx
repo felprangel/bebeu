@@ -8,6 +8,9 @@ export function Input(props: TextInputProps) {
         borderColor: colors.primary,
         borderStyle: "solid",
         borderWidth: 1,
+        borderRadius: 10,
+        height: 55,
+        width: 250,
       }}
       {...props}
     />
