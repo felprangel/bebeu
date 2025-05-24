@@ -29,7 +29,14 @@ export default function Index() {
         <Input placeholder="Email" />
         <Input placeholder="Senha" />
         <Button>
-          <Text style={{ color: colors.text.contrast }}>Login</Text>
+          <Text
+            style={{
+              color: colors.text.contrast,
+              fontFamily: "Fredoka_500Medium",
+            }}
+          >
+            Login
+          </Text>
         </Button>
         <Text
           style={{
