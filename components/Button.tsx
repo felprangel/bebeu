@@ -8,7 +8,7 @@ export function Button(props: TouchableHighlightProps) {
         backgroundColor: colors.primary,
         borderRadius: 10,
         width: 150,
-        height: 40,
+        height: 50,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
