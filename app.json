@@ -24,6 +24,12 @@
       "favicon": "./assets/images/icon.png"
     },
     "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["node_modules/@expo-google-fonts/inter/Inter_900Black.ttf"]
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
