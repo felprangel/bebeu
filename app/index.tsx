@@ -1,4 +1,5 @@
 import { colors } from "@/assets/styles/colors";
+import { fontFamily } from "@/assets/styles/font-family";
 import Logo from "@/assets/svg/logo.svg";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
@@ -32,7 +33,7 @@ export default function Index() {
           <Text
             style={{
               color: colors.text.contrast,
-              fontFamily: "Fredoka_500Medium",
+              fontFamily: fontFamily.medium,
             }}
           >
             Login
