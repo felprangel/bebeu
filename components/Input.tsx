@@ -12,6 +12,7 @@ export function Input(props: TextInputProps) {
         height: 55,
         width: 250,
       }}
+      placeholderTextColor={colors.text.contrast}
       {...props}
     />
   );
