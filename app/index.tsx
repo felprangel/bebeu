@@ -27,8 +27,8 @@ export default function Index() {
           alignItems: "center",
         }}
       >
-        <Input placeholder="Email" />
-        <Input placeholder="Senha" />
+        <Input placeholder="Email" autoComplete="email" autoFocus />
+        <Input placeholder="Senha" autoComplete="password" />
         <Button>
           <Text
             style={{
