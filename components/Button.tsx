@@ -1,5 +1,5 @@
-import { colors } from "@/assets/styles/colors";
-import { TouchableHighlight, TouchableHighlightProps } from "react-native";
+import { colors } from '@/assets/styles/colors'
+import { TouchableHighlight, TouchableHighlightProps } from 'react-native'
 
 export function Button(props: TouchableHighlightProps) {
   return (
@@ -9,13 +9,13 @@ export function Button(props: TouchableHighlightProps) {
         borderRadius: 10,
         width: 170,
         height: 50,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
       {...props}
     >
       {props.children}
     </TouchableHighlight>
-  );
+  )
 }

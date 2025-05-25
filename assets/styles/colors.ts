@@ -1,7 +1,7 @@
 export const colors = {
   text: {
-    default: "#1982FF",
-    contrast: "#FFFFFF",
+    default: '#1982FF',
+    contrast: '#FFFFFF'
   },
-  primary: "#1982FF",
-};
+  primary: '#1982FF'
+}
