@@ -1,6 +1,8 @@
 import { colors } from "@/assets/styles/colors";
 import { fontFamily } from "@/assets/styles/font-family";
+import Lock from "@/assets/svg/lock-icon.svg";
 import Logo from "@/assets/svg/logo.svg";
+import User from "@/assets/svg/user-icon.svg";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Text, View } from "react-native";
@@ -27,8 +29,13 @@ export default function Index() {
           alignItems: "center",
         }}
       >
-        <Input placeholder="Email" autoComplete="email" autoFocus />
-        <Input placeholder="Senha" autoComplete="password" />
+        <Input placeholder="Email" autoComplete="email" icon={<User />} />
+        <Input
+          placeholder="Senha"
+          autoComplete="password"
+          secureTextEntry
+          icon={<Lock />}
+        />
         <Button>
           <Text
             style={{
