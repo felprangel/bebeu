@@ -30,6 +30,7 @@ export default function Register() {
         <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}>
           Registre-se agora!
         </Text>
+        <Input placeholder="Nome" autoComplete="name" icon={<User />} />
         <Input placeholder="Email" autoComplete="email" icon={<User />} />
         <Input placeholder="Senha" autoComplete="new-password" secureTextEntry icon={<Lock />} />
         <Input placeholder="Confirme sua senha" autoComplete="new-password" secureTextEntry icon={<Lock />} />
