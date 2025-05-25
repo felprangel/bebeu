@@ -1,3 +1,4 @@
+import { AuthProvider } from '@/hooks/useAuth'
 import {
   Fredoka_400Regular,
   Fredoka_500Medium,
@@ -18,5 +19,9 @@ export default function RootLayout() {
   if (!fontsLoaded) {
     return
   }
-  return <Stack screenOptions={{ headerShown: false }} />
+  return (
+    <AuthProvider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </AuthProvider>
+  )
 }
