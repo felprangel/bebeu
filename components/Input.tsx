@@ -11,8 +11,9 @@ export function Input(props: TextInputProps) {
         borderRadius: 10,
         height: 55,
         width: 250,
+        color: colors.text.default,
       }}
-      placeholderTextColor={colors.text.contrast}
+      placeholderTextColor={colors.text.default}
       {...props}
     />
   );
