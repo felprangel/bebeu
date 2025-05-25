@@ -11,12 +11,12 @@ interface AuthProps {
   loggedIn: boolean
 }
 
-interface LoginData {
+export interface LoginData {
   email: string
   password: string
 }
 
-interface RegisterData extends LoginData {
+export interface RegisterData extends LoginData {
   name: string
   password_confirmation: string
 }
