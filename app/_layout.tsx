@@ -5,7 +5,7 @@ import {
   Fredoka_700Bold,
   useFonts
 } from '@expo-google-fonts/fredoka'
-import { Slot } from 'expo-router'
+import { Stack } from 'expo-router'
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -18,5 +18,5 @@ export default function RootLayout() {
   if (!fontsLoaded) {
     return
   }
-  return <Slot />
+  return <Stack screenOptions={{ headerShown: false }} />
 }
