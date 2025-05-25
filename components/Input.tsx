@@ -26,6 +26,7 @@ export function Input(props: InputProps) {
           color: colors.text.default,
           paddingLeft: 20
         }}
+        autoCapitalize="none"
         placeholderTextColor={colors.text.default}
         {...props}
       />
