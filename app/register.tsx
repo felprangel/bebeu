@@ -27,9 +27,12 @@ export default function Register() {
           alignItems: 'center'
         }}
       >
+        <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}>
+          Registre-se agora!
+        </Text>
         <Input placeholder="Email" autoComplete="email" icon={<User />} />
         <Input placeholder="Senha" autoComplete="new-password" secureTextEntry icon={<Lock />} />
-        <Input placeholder="Confirme sua Senha" autoComplete="new-password" secureTextEntry icon={<Lock />} />
+        <Input placeholder="Confirme sua senha" autoComplete="new-password" secureTextEntry icon={<Lock />} />
         <Button>
           <Text
             style={{
