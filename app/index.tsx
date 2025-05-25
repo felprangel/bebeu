@@ -5,9 +5,12 @@ import Logo from '@/assets/svg/logo.svg'
 import User from '@/assets/svg/user-icon.svg'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
+import { useRouter } from 'expo-router'
 import { Text, View } from 'react-native'
 
 export default function Index() {
+  const Router = useRouter()
+
   return (
     <View
       style={{
@@ -50,6 +53,7 @@ export default function Index() {
             fontFamily: fontFamily.regular,
             fontSize: 17
           }}
+          onPress={() => Router.push('/register')}
         >
           Registre-se
         </Text>
