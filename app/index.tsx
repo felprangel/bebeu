@@ -5,6 +5,7 @@ import Logo from '@/assets/svg/logo.svg'
 import User from '@/assets/svg/user-icon.svg'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
+import { TextError } from '@/components/TextError'
 import { LoginData, useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'expo-router'
 import { Formik } from 'formik'
@@ -55,25 +56,29 @@ export default function Index() {
         >
           {({ handleChange, handleBlur, handleSubmit, values, touched, errors }) => (
             <>
-              <Input
-                placeholder="Email"
-                autoComplete="email"
-                icon={<User />}
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-              />
-              {touched.email && errors.email && <Text>{errors.email}</Text>}
-              <Input
-                placeholder="Senha"
-                autoComplete="password"
-                secureTextEntry
-                icon={<Lock />}
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-              />
-              {touched.password && errors.password && <Text>{errors.password}</Text>}
+              <View>
+                <Input
+                  placeholder="Email"
+                  autoComplete="email"
+                  icon={<User />}
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                />
+                {touched.email && errors.email && <TextError>{errors.email}</TextError>}
+              </View>
+              <View>
+                <Input
+                  placeholder="Senha"
+                  autoComplete="password"
+                  secureTextEntry
+                  icon={<Lock />}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                />
+                {touched.password && errors.password && <TextError>{errors.password}</TextError>}
+              </View>
               <Button onPress={() => handleSubmit()}>
                 <Text
                   style={{
