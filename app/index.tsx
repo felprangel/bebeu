@@ -5,11 +5,26 @@ import Logo from '@/assets/svg/logo.svg'
 import User from '@/assets/svg/user-icon.svg'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
+import { LoginData, useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'expo-router'
+import { Formik } from 'formik'
 import { Text, View } from 'react-native'
+import { z } from 'zod'
+import { toFormikValidationSchema } from 'zod-formik-adapter'
 
 export default function Index() {
   const Router = useRouter()
+  const Auth = useAuth()
+
+  const loginSchema = z.object({
+    email: z.string({ required_error: 'O email é obrigatório' }).email('Email inválido'),
+    password: z.string({ required_error: 'A senha é obrigatória' })
+  })
+
+  async function login(data: LoginData) {
+    console.log('chegou aqui')
+    Auth.login(data)
+  }
 
   return (
     <View
@@ -32,19 +47,47 @@ export default function Index() {
           alignItems: 'center'
         }}
       >
-        <Input placeholder="Email" autoComplete="email" icon={<User />} />
-        <Input placeholder="Senha" autoComplete="password" secureTextEntry icon={<Lock />} />
-        <Button>
-          <Text
-            style={{
-              color: colors.text.contrast,
-              fontFamily: fontFamily.medium,
-              fontSize: 20
-            }}
-          >
-            Login
-          </Text>
-        </Button>
+        <Formik
+          initialValues={{ email: '', password: '' }}
+          onSubmit={login}
+          validateOnBlur
+          validationSchema={toFormikValidationSchema(loginSchema)}
+        >
+          {({ handleChange, handleBlur, handleSubmit, values, touched, errors }) => (
+            <>
+              <Input
+                placeholder="Email"
+                autoComplete="email"
+                icon={<User />}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                value={values.email}
+              />
+              {touched.email && errors.email && <Text>{errors.email}</Text>}
+              <Input
+                placeholder="Senha"
+                autoComplete="password"
+                secureTextEntry
+                icon={<Lock />}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                value={values.password}
+              />
+              {touched.password && errors.password && <Text>{errors.password}</Text>}
+              <Button onPress={() => handleSubmit()}>
+                <Text
+                  style={{
+                    color: colors.text.contrast,
+                    fontFamily: fontFamily.medium,
+                    fontSize: 20
+                  }}
+                >
+                  Login
+                </Text>
+              </Button>
+            </>
+          )}
+        </Formik>
         <Text
           style={{
             color: colors.text.default,
