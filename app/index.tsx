@@ -41,6 +41,7 @@ export default function Index() {
             style={{
               color: colors.text.contrast,
               fontFamily: fontFamily.medium,
+              fontSize: 20,
             }}
           >
             Login
@@ -51,6 +52,8 @@ export default function Index() {
             color: colors.text.default,
             textDecorationLine: "underline",
             textAlign: "center",
+            fontFamily: fontFamily.regular,
+            fontSize: 17,
           }}
         >
           Registre-se
