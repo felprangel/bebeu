@@ -1,5 +1,6 @@
 import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
+import Email from '@/assets/svg/email-icon.svg'
 import Lock from '@/assets/svg/lock-icon.svg'
 import User from '@/assets/svg/user-icon.svg'
 import { Button } from '@/components/Button'
@@ -31,7 +32,7 @@ export default function Register() {
           Registre-se agora!
         </Text>
         <Input placeholder="Nome" autoComplete="name" icon={<User />} />
-        <Input placeholder="Email" autoComplete="email" icon={<User />} />
+        <Input placeholder="Email" autoComplete="email" icon={<Email />} />
         <Input placeholder="Senha" autoComplete="new-password" secureTextEntry icon={<Lock />} />
         <Input placeholder="Confirme sua senha" autoComplete="new-password" secureTextEntry icon={<Lock />} />
         <Button>

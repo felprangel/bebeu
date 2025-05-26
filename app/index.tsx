@@ -1,8 +1,8 @@
 import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
+import Email from '@/assets/svg/email-icon.svg'
 import Lock from '@/assets/svg/lock-icon.svg'
 import Logo from '@/assets/svg/logo.svg'
-import User from '@/assets/svg/user-icon.svg'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
 import { TextError } from '@/components/TextError'
@@ -60,7 +60,7 @@ export default function Index() {
                 <Input
                   placeholder="Email"
                   autoComplete="email"
-                  icon={<User />}
+                  icon={<Email />}
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
                   value={values.email}
