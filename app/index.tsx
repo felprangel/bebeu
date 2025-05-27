@@ -23,7 +23,6 @@ export default function Index() {
   })
 
   async function login(data: LoginData) {
-    console.log('chegou aqui')
     Auth.login(data)
   }
 
