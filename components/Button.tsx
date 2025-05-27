@@ -16,15 +16,17 @@ export function Button(props: ButtonProps) {
         height: 50,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        ...(props.style as object)
       }}
-      {...props}
+      {...(({ style, ...rest }) => rest)(props)}
     >
       <Text
         style={{
           color: colors.text.contrast,
           fontFamily: fontFamily.medium,
-          fontSize: 20
+          fontSize: 20,
+          textAlign: 'center'
         }}
       >
         {props.text}
