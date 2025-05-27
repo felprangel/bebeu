@@ -75,7 +75,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function logout() {
     try {
-      await api.post('/logout')
       await SecureStore.deleteItemAsync(TOKEN_KEY)
       Router.push('/')
     } catch (error) {
