@@ -11,6 +11,7 @@ export default function Weight() {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        // TODO: remover essa borda
         borderWidth: 10,
         borderColor: 'red'
       }}
