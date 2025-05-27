@@ -19,7 +19,11 @@ export default function Weight() {
       <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}>
         Qual o seu peso atual?
       </Text>
-      <Button text="Calcular a minha meta de água" onPress={() => console.log('teste')} />
+      <Button
+        text="Calcular a minha meta de água"
+        onPress={() => console.log('teste')}
+        style={{ width: 250, height: 70, paddingHorizontal: 40 }}
+      />
     </SafeAreaView>
   )
 }
