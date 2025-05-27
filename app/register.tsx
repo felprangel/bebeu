@@ -103,17 +103,7 @@ export default function Register() {
                   <TextError>{errors.password_confirmation}</TextError>
                 )}
               </View>
-              <Button onPress={() => handleSubmit()}>
-                <Text
-                  style={{
-                    color: colors.text.contrast,
-                    fontFamily: fontFamily.medium,
-                    fontSize: 20
-                  }}
-                >
-                  Registrar
-                </Text>
-              </Button>
+              <Button text="Registrar" onPress={() => handleSubmit()} />
             </>
           )}
         </Formik>

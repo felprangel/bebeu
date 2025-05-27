@@ -78,17 +78,7 @@ export default function Index() {
                 />
                 {touched.password && errors.password && <TextError>{errors.password}</TextError>}
               </View>
-              <Button onPress={() => handleSubmit()}>
-                <Text
-                  style={{
-                    color: colors.text.contrast,
-                    fontFamily: fontFamily.medium,
-                    fontSize: 20
-                  }}
-                >
-                  Login
-                </Text>
-              </Button>
+              <Button text="Login" onPress={() => handleSubmit()} />
             </>
           )}
         </Formik>
