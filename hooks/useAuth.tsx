@@ -2,7 +2,7 @@ import { TOKEN_KEY } from '@/database/local'
 import { api } from '@/services/api'
 import { useRouter } from 'expo-router'
 import * as SecureStore from 'expo-secure-store'
-import React, { createContext, ReactNode, useContext, useState } from 'react'
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 interface AuthProps {
   register(data: RegisterData): Promise<void>
@@ -30,6 +30,24 @@ const AuthContext = createContext({} as AuthProps)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const Router = useRouter()
   const [token, setToken] = useState<string>()
+
+  useEffect(() => {
+    getTokenFromStorage()
+  }, [])
+
+  useEffect(() => {
+    if (token) {
+      Router.replace('/home')
+    }
+  }, [token, Router])
+
+  async function getTokenFromStorage() {
+    const storageToken = await SecureStore.getItemAsync(TOKEN_KEY)
+
+    if (storageToken) {
+      setToken(storageToken)
+    }
+  }
 
   async function login(data: LoginData): Promise<void> {
     try {
