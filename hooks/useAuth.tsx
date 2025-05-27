@@ -34,10 +34,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function login(data: LoginData): Promise<void> {
     try {
       const response = await api.post<AuthResponse>('/login', data)
-      const token = response.data.token.split('|')[1]
+      const apiToken = response.data.token.split('|')[1]
 
-      await SecureStore.setItemAsync(TOKEN_KEY, token)
-      setToken(token)
+      await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
+      setToken(apiToken)
     } catch (error) {
       console.error('Erro no login:', error)
     }
@@ -46,10 +46,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function register(data: RegisterData): Promise<void> {
     try {
       const response = await api.post<AuthResponse>('/register', data)
-      const token = response.data.token.split('|')[1]
+      const apiToken = response.data.token.split('|')[1]
 
-      await SecureStore.setItemAsync(TOKEN_KEY, token)
-      setToken(token)
+      await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
+      setToken(apiToken)
     } catch (error) {
       console.error('Erro no registro:', error)
     }
