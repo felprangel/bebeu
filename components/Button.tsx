@@ -1,7 +1,12 @@
 import { colors } from '@/assets/styles/colors'
-import { TouchableHighlight, TouchableHighlightProps } from 'react-native'
+import { fontFamily } from '@/assets/styles/font-family'
+import { Text, TouchableHighlight, TouchableHighlightProps } from 'react-native'
 
-export function Button(props: TouchableHighlightProps) {
+interface ButtonProps extends TouchableHighlightProps {
+  text: string
+}
+
+export function Button(props: ButtonProps) {
   return (
     <TouchableHighlight
       style={{
@@ -15,7 +20,15 @@ export function Button(props: TouchableHighlightProps) {
       }}
       {...props}
     >
-      {props.children}
+      <Text
+        style={{
+          color: colors.text.contrast,
+          fontFamily: fontFamily.medium,
+          fontSize: 20
+        }}
+      >
+        {props.text}
+      </Text>
     </TouchableHighlight>
   )
 }
