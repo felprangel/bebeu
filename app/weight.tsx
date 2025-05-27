@@ -10,10 +10,7 @@ export default function Weight() {
         display: 'flex',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        // TODO: remover essa borda
-        borderWidth: 10,
-        borderColor: 'red'
+        alignItems: 'center'
       }}
     >
       <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}>
