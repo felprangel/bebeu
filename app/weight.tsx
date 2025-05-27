@@ -24,6 +24,18 @@ export default function Weight() {
         onPress={() => console.log('teste')}
         style={{ width: 250, height: 70, paddingHorizontal: 40 }}
       />
+      <Text
+        style={{
+          color: colors.text.default,
+          fontFamily: fontFamily.regular,
+          textAlign: 'center',
+          fontSize: 17,
+          paddingHorizontal: 35,
+          marginTop: 50
+        }}
+      >
+        *Usaremos essa informação para definir sua meta diária de hidratação
+      </Text>
     </SafeAreaView>
   )
 }
