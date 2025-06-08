@@ -8,6 +8,7 @@ interface AuthProps {
   register(data: RegisterData): Promise<void>
   login(data: LoginData): Promise<void>
   logout(): void
+  changeWaterGoalInUserDataObject(goal: number): void
   loggedIn: boolean
 }
 
@@ -111,12 +112,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function changeWaterGoalInUserDataObject(goal: number) {
+    if (!userData) {
+      return
+    }
+
+    setUserData(prev =>
+      prev
+        ? {
+            ...prev,
+            water_goal: goal
+          }
+        : undefined
+    )
+
+    await SecureStore.setItemAsync(USER_DATA_KEY, JSON.stringify(userData))
+  }
+
   return (
     <AuthContext.Provider
       value={{
         login,
         register,
         logout,
+        changeWaterGoalInUserDataObject,
         loggedIn: !!token
       }}
     >
