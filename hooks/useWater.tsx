@@ -1,5 +1,6 @@
 import { api } from '@/services/api'
 import { createContext, ReactNode, useContext } from 'react'
+import { useAuth } from './useAuth'
 
 interface WaterProps {
   saveWaterGoal(goal: number): void
@@ -8,8 +9,12 @@ interface WaterProps {
 const AuthContext = createContext({} as WaterProps)
 
 export function WaterProvider({ children }: { children: ReactNode }) {
+  const Auth = useAuth()
+
   async function saveWaterGoal(goal: number) {
     await api.patch('/me/goal', { water_goal: goal })
+
+    Auth.changeWaterGoalInUserDataObject(goal)
   }
 
   return (
