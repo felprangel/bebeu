@@ -39,9 +39,11 @@ const AuthContext = createContext({} as AuthProps)
 export function AuthProvider({ children }: { children: ReactNode }) {
   const Router = useRouter()
   const [token, setToken] = useState<string>()
+  const [userData, setUserData] = useState<UserData>()
 
   useEffect(() => {
     getTokenFromStorage()
+    getUserDataFromStorage()
   }, [])
 
   useEffect(() => {
@@ -55,6 +57,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (storageToken) {
       setToken(storageToken)
+    }
+  }
+
+  async function getUserDataFromStorage() {
+    const storageUserData = await SecureStore.getItemAsync(USER_DATA_KEY)
+
+    if (storageUserData) {
+      setUserData(JSON.parse(storageUserData))
     }
   }
 
