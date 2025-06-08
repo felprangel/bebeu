@@ -1,4 +1,5 @@
 import { AuthProvider } from '@/hooks/useAuth'
+import { WaterProvider } from '@/hooks/useWater'
 import {
   Fredoka_400Regular,
   Fredoka_500Medium,
@@ -21,7 +22,9 @@ export default function RootLayout() {
   }
   return (
     <AuthProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+      <WaterProvider>
+        <Stack screenOptions={{ headerShown: false }} />
+      </WaterProvider>
     </AuthProvider>
   )
 }
