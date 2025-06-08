@@ -21,6 +21,11 @@ export interface RegisterData extends LoginData {
   password_confirmation: string
 }
 
+interface UserData {
+  name: string
+  water_goal: number
+}
+
 interface AuthResponse {
   token: string
 }
