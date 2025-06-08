@@ -58,7 +58,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const response = await api.post<LoginResponse>('/login', data)
       const apiToken = response.data.token.split('|')[1]
+      const userData = response.data.user_data
 
+      await SecureStore.setItemAsync(USER_DATA_KEY, JSON.stringify(userData))
       await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
       setToken(apiToken)
     } catch (error) {
