@@ -104,6 +104,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function logout() {
     try {
       await SecureStore.deleteItemAsync(TOKEN_KEY)
+      await SecureStore.deleteItemAsync(USER_DATA_KEY)
       Router.push('/')
     } catch (error) {
       console.error('Erro no logout:', error)
