@@ -83,6 +83,7 @@ export default function Register() {
                 <Input
                   placeholder="Senha"
                   autoComplete="new-password"
+                  secureTextEntry
                   icon={<Lock />}
                   onChangeText={handleChange('password')}
                   onBlur={handleBlur('password')}
@@ -94,6 +95,7 @@ export default function Register() {
                 <Input
                   placeholder="Confirme sua senha"
                   autoComplete="new-password"
+                  secureTextEntry
                   icon={<Lock />}
                   onChangeText={handleChange('password_confirmation')}
                   onBlur={handleBlur('password_confirmation')}
