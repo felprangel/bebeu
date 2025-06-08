@@ -1,4 +1,4 @@
-import { TOKEN_KEY } from '@/database/local'
+import { TOKEN_KEY, USER_DATA_KEY } from '@/database/local'
 import { api } from '@/services/api'
 import { useRouter } from 'expo-router'
 import * as SecureStore from 'expo-secure-store'
@@ -47,10 +47,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    if (token) {
-      Router.replace('/home')
+    if (!token || !userData) {
+      return
     }
-  }, [token, Router])
+
+    if (!userData.water_goal) {
+      Router.replace('/weight')
+    }
+
+    Router.replace('/home')
+  }, [token, userData, Router])
 
   async function getTokenFromStorage() {
     const storageToken = await SecureStore.getItemAsync(TOKEN_KEY)
