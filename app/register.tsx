@@ -23,7 +23,7 @@ export default function Register() {
   })
 
   async function register(data: RegisterData) {
-    Auth.login(data)
+    Auth.register(data)
   }
 
   return (
