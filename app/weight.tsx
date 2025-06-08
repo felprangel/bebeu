@@ -2,9 +2,20 @@ import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
 import Man from '@/assets/svg/man.svg'
 import { Button } from '@/components/Button'
+import { useWater } from '@/hooks/useWater'
+import { useState } from 'react'
 import { SafeAreaView, Text, TextInput, View } from 'react-native'
 
 export default function Weight() {
+  const Water = useWater()
+  const [weight, setWeight] = useState<number>(0)
+  const WATER_INTAKE_ML_PER_KG_PER_DAY = 35
+
+  function calculateWaterGoal() {
+    const goal = WATER_INTAKE_ML_PER_KG_PER_DAY * weight
+    Water.saveWaterGoal(goal)
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -31,6 +42,7 @@ export default function Weight() {
             Digite seu peso em KG:
           </Text>
           <TextInput
+            onChangeText={input => setWeight(parseInt(input))}
             style={{
               width: 200,
               color: colors.text.default,
@@ -45,7 +57,7 @@ export default function Weight() {
       </View>
       <Button
         text="Calcular a minha meta de água"
-        onPress={() => console.log('teste')}
+        onPress={calculateWaterGoal}
         style={{ width: 250, height: 70, paddingHorizontal: 40 }}
       />
       <Text
