@@ -30,6 +30,10 @@ interface AuthResponse {
   token: string
 }
 
+interface LoginResponse extends AuthResponse {
+  user_data: UserData
+}
+
 const AuthContext = createContext({} as AuthProps)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
