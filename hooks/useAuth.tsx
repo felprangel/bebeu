@@ -53,6 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (!userData.water_goal) {
       Router.replace('/weight')
+      return
     }
 
     Router.replace('/home')
