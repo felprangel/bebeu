@@ -1,9 +1,10 @@
 import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
-import { Text, TouchableHighlight, TouchableHighlightProps } from 'react-native'
+import { ActivityIndicator, Text, TouchableHighlight, TouchableHighlightProps } from 'react-native'
 
 interface ButtonProps extends TouchableHighlightProps {
   text: string
+  loading?: boolean
 }
 
 export function Button(props: ButtonProps) {
@@ -21,16 +22,20 @@ export function Button(props: ButtonProps) {
       }}
       {...(({ style, ...rest }) => rest)(props)}
     >
-      <Text
-        style={{
-          color: colors.text.contrast,
-          fontFamily: fontFamily.medium,
-          fontSize: 20,
-          textAlign: 'center'
-        }}
-      >
-        {props.text}
-      </Text>
+      {props.loading ? (
+        <ActivityIndicator color={colors.text.contrast} size={25} />
+      ) : (
+        <Text
+          style={{
+            color: colors.text.contrast,
+            fontFamily: fontFamily.medium,
+            fontSize: 20,
+            textAlign: 'center'
+          }}
+        >
+          {props.text}
+        </Text>
+      )}
     </TouchableHighlight>
   )
 }
