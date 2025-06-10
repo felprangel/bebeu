@@ -3,13 +3,23 @@ import { fontFamily } from '@/assets/styles/font-family'
 import Man from '@/assets/svg/man.svg'
 import { Button } from '@/components/Button'
 import { useWater } from '@/hooks/useWater'
-import { useState } from 'react'
+import { AxiosError } from 'axios'
+import { useEffect, useState } from 'react'
 import { SafeAreaView, Text, TextInput, View } from 'react-native'
+import { Snackbar } from 'react-native-paper'
 
 export default function Weight() {
   const Water = useWater()
   const [weight, setWeight] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
+  const [showError, setShowError] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>()
+
+  useEffect(() => {
+    if (!showError) return
+
+    setTimeout(() => setShowError(false), 1500)
+  }, [showError])
 
   const WATER_INTAKE_ML_PER_KG_PER_DAY = 35
 
@@ -19,7 +29,11 @@ export default function Weight() {
       const goal = WATER_INTAKE_ML_PER_KG_PER_DAY * weight
       await Water.saveWaterGoal(goal)
     } catch (error) {
-      // TODO: tratar erro
+      setErrorMessage('Erro ao fazer login')
+      if (error instanceof AxiosError) {
+        setErrorMessage(error.response?.data.message)
+      }
+      setShowError(true)
     } finally {
       setLoading(false)
     }
@@ -82,6 +96,15 @@ export default function Weight() {
       >
         *Usaremos essa informação para definir sua meta diária de hidratação
       </Text>
+      <Snackbar
+        visible={showError}
+        onDismiss={() => setShowError(false)}
+        action={{
+          label: 'Fechar'
+        }}
+      >
+        {errorMessage}
+      </Snackbar>
     </SafeAreaView>
   )
 }
