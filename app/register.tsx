@@ -7,15 +7,25 @@ import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
 import { TextError } from '@/components/TextError'
 import { RegisterData, useAuth } from '@/hooks/useAuth'
+import { AxiosError } from 'axios'
 import { Formik } from 'formik'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
+import { Snackbar } from 'react-native-paper'
 import { z } from 'zod'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 
 export default function Register() {
   const Auth = useAuth()
   const [loading, setLoading] = useState<boolean>(false)
+  const [showError, setShowError] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>()
+
+  useEffect(() => {
+    if (!showError) return
+
+    setTimeout(() => setShowError(false), 1500)
+  }, [showError])
 
   const registerSchema = z.object({
     name: z.string({ required_error: 'O nome é obrigatório' }),
@@ -29,7 +39,11 @@ export default function Register() {
       setLoading(true)
       await Auth.register(data)
     } catch (error) {
-      // TODO: tratar erro
+      setErrorMessage('Erro ao fazer login')
+      if (error instanceof AxiosError) {
+        setErrorMessage(error.response?.data.message)
+      }
+      setShowError(true)
     } finally {
       setLoading(false)
     }
@@ -119,6 +133,15 @@ export default function Register() {
           )}
         </Formik>
       </View>
+      <Snackbar
+        visible={showError}
+        onDismiss={() => setShowError(false)}
+        action={{
+          label: 'Fechar'
+        }}
+      >
+        {errorMessage}
+      </Snackbar>
     </View>
   )
 }
