@@ -9,6 +9,7 @@ import { TextError } from '@/components/TextError'
 import { LoginData, useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'expo-router'
 import { Formik } from 'formik'
+import { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
 import { z } from 'zod'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
@@ -16,6 +17,9 @@ import { toFormikValidationSchema } from 'zod-formik-adapter'
 export default function Index() {
   const Router = useRouter()
   const Auth = useAuth()
+  const [loading, setLoading] = useState<boolean>(false)
+
+  useEffect(() => {}, [loading])
 
   const loginSchema = z.object({
     email: z.string({ required_error: 'O email é obrigatório' }).email('Email inválido'),
@@ -23,7 +27,14 @@ export default function Index() {
   })
 
   async function login(data: LoginData) {
-    Auth.login(data)
+    try {
+      setLoading(true)
+      await Auth.login(data)
+    } catch (error) {
+      // TODO: tratar erro
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -78,7 +89,7 @@ export default function Index() {
                 />
                 {touched.password && errors.password && <TextError>{errors.password}</TextError>}
               </View>
-              <Button text="Login" onPress={() => handleSubmit()} />
+              <Button loading={loading} text="Login" onPress={() => handleSubmit()} />
             </>
           )}
         </Formik>

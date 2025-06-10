@@ -9,11 +9,20 @@ import { SafeAreaView, Text, TextInput, View } from 'react-native'
 export default function Weight() {
   const Water = useWater()
   const [weight, setWeight] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
+
   const WATER_INTAKE_ML_PER_KG_PER_DAY = 35
 
-  function calculateWaterGoal() {
-    const goal = WATER_INTAKE_ML_PER_KG_PER_DAY * weight
-    Water.saveWaterGoal(goal)
+  async function calculateWaterGoal() {
+    try {
+      setLoading(true)
+      const goal = WATER_INTAKE_ML_PER_KG_PER_DAY * weight
+      await Water.saveWaterGoal(goal)
+    } catch (error) {
+      // TODO: tratar erro
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -56,6 +65,7 @@ export default function Weight() {
         </View>
       </View>
       <Button
+        loading={loading}
         text="Calcular a minha meta de água"
         onPress={calculateWaterGoal}
         style={{ width: 250, height: 70, paddingHorizontal: 40 }}

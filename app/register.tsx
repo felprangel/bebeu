@@ -8,12 +8,14 @@ import { Input } from '@/components/Input'
 import { TextError } from '@/components/TextError'
 import { RegisterData, useAuth } from '@/hooks/useAuth'
 import { Formik } from 'formik'
+import { useState } from 'react'
 import { Text, View } from 'react-native'
 import { z } from 'zod'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 
 export default function Register() {
   const Auth = useAuth()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const registerSchema = z.object({
     name: z.string({ required_error: 'O nome é obrigatório' }),
@@ -23,7 +25,14 @@ export default function Register() {
   })
 
   async function register(data: RegisterData) {
-    Auth.register(data)
+    try {
+      setLoading(true)
+      await Auth.register(data)
+    } catch (error) {
+      // TODO: tratar erro
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -105,7 +114,7 @@ export default function Register() {
                   <TextError>{errors.password_confirmation}</TextError>
                 )}
               </View>
-              <Button text="Registrar" onPress={() => handleSubmit()} />
+              <Button loading={loading} text="Registrar" onPress={() => handleSubmit()} />
             </>
           )}
         </Formik>
