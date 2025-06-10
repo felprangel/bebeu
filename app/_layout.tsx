@@ -8,6 +8,7 @@ import {
   useFonts
 } from '@expo-google-fonts/fredoka'
 import { Stack } from 'expo-router'
+import { PaperProvider } from 'react-native-paper'
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -21,10 +22,12 @@ export default function RootLayout() {
     return
   }
   return (
-    <AuthProvider>
-      <WaterProvider>
-        <Stack screenOptions={{ headerShown: false }} />
-      </WaterProvider>
-    </AuthProvider>
+    <PaperProvider>
+      <AuthProvider>
+        <WaterProvider>
+          <Stack screenOptions={{ headerShown: false }} />
+        </WaterProvider>
+      </AuthProvider>
+    </PaperProvider>
   )
 }
