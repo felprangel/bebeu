@@ -77,17 +77,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function login(data: LoginData): Promise<void> {
-    try {
-      const response = await api.post<LoginResponse>('/login', data)
-      const apiToken = response.data.token.split('|')[1]
-      const userData = response.data.user_data
+    const response = await api.post<LoginResponse>('/login', data)
+    const apiToken = response.data.token.split('|')[1]
+    const userData = response.data.user_data
 
-      await SecureStore.setItemAsync(USER_DATA_KEY, JSON.stringify(userData))
-      await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
-      setToken(apiToken)
-    } catch (error) {
-      console.error('Erro no login:', error)
-    }
+    await SecureStore.setItemAsync(USER_DATA_KEY, JSON.stringify(userData))
+    await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
+    setToken(apiToken)
   }
 
   async function register(data: RegisterData): Promise<void> {
