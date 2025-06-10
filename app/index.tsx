@@ -39,7 +39,6 @@ export default function Index() {
       setLoading(true)
       await Auth.login(data)
     } catch (error) {
-      console.log(error)
       setErrorMessage('Erro ao fazer login')
       if (error instanceof AxiosError) {
         setErrorMessage(error.response?.data.message)
