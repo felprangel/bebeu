@@ -87,15 +87,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function register(data: RegisterData): Promise<void> {
-    try {
-      const response = await api.post<AuthResponse>('/register', data)
-      const apiToken = response.data.token.split('|')[1]
+    const response = await api.post<AuthResponse>('/register', data)
+    const apiToken = response.data.token.split('|')[1]
 
-      await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
-      setToken(apiToken)
-    } catch (error) {
-      console.error('Erro no registro:', error)
-    }
+    await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
+    setToken(apiToken)
   }
 
   async function logout() {
