@@ -7,10 +7,12 @@ import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
 import { TextError } from '@/components/TextError'
 import { LoginData, useAuth } from '@/hooks/useAuth'
+import { AxiosError } from 'axios'
 import { useRouter } from 'expo-router'
 import { Formik } from 'formik'
 import { useEffect, useState } from 'react'
 import { Text, View } from 'react-native'
+import { Snackbar } from 'react-native-paper'
 import { z } from 'zod'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 
@@ -18,8 +20,14 @@ export default function Index() {
   const Router = useRouter()
   const Auth = useAuth()
   const [loading, setLoading] = useState<boolean>(false)
+  const [showError, setShowError] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>()
 
-  useEffect(() => {}, [loading])
+  useEffect(() => {
+    if (!showError) return
+
+    setTimeout(() => setShowError(false), 1500)
+  }, [showError])
 
   const loginSchema = z.object({
     email: z.string({ required_error: 'O email é obrigatório' }).email('Email inválido'),
@@ -31,7 +39,12 @@ export default function Index() {
       setLoading(true)
       await Auth.login(data)
     } catch (error) {
-      // TODO: tratar erro
+      console.log(error)
+      setErrorMessage('Erro ao fazer login')
+      if (error instanceof AxiosError) {
+        setErrorMessage(error.response?.data.message)
+      }
+      setShowError(true)
     } finally {
       setLoading(false)
     }
@@ -43,7 +56,9 @@ export default function Index() {
         display: 'flex',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginVertical: 50,
+        marginHorizontal: 20
       }}
     >
       <Logo />
@@ -106,6 +121,15 @@ export default function Index() {
           Registre-se
         </Text>
       </View>
+      <Snackbar
+        visible={showError}
+        onDismiss={() => setShowError(false)}
+        action={{
+          label: 'Fechar'
+        }}
+      >
+        {errorMessage}
+      </Snackbar>
     </View>
   )
 }
