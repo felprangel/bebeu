@@ -3,7 +3,7 @@ import { createContext, ReactNode, useContext } from 'react'
 import { useAuth } from './useAuth'
 
 interface WaterProps {
-  saveWaterGoal(goal: number): void
+  saveWaterGoal(goal: number): Promise<void>
 }
 
 const AuthContext = createContext({} as WaterProps)
