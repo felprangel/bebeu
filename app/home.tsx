@@ -1,17 +1,36 @@
+import { colors } from '@/assets/styles/colors'
+import { fontFamily } from '@/assets/styles/font-family'
+import SmallCup from '@/assets/svg/small-cup.svg'
 import { Button } from '@/components/Button'
 import { useAuth } from '@/hooks/useAuth'
-import { useRouter } from 'expo-router'
-import { Text } from 'react-native'
+import { SafeAreaView, Text } from 'react-native'
+import { AnimatedCircularProgress } from 'react-native-circular-progress'
 
 export default function Home() {
   const Auth = useAuth()
-  const Router = useRouter()
 
   return (
-    <>
-      <Text>Hello World</Text>
-      <Button text="Teste" onPress={() => Auth.logout()} />
-      <Button text="Ir pra outra tela" onPress={() => Router.push('/weight')} />
-    </>
+    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 30 }}>
+      <AnimatedCircularProgress
+        size={300}
+        width={15}
+        fill={40}
+        tintColor="#00e0ff"
+        onAnimationComplete={() => console.log('onAnimationComplete')}
+        backgroundColor="#3d5875"
+      >
+        {() => (
+          <>
+            <SmallCup />
+            <Text
+              style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}
+            >
+              1000 ml
+            </Text>
+          </>
+        )}
+      </AnimatedCircularProgress>
+      <Button text="Beber 300 ml" onPress={() => Auth.logout()} />
+    </SafeAreaView>
   )
 }
