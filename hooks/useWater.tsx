@@ -29,12 +29,17 @@ export function WaterProvider({ children }: { children: ReactNode }) {
     return response.data
   }
 
+  async function registerWaterIntake() {
+    await api.post('/me/intake')
+  }
+
   return (
     <AuthContext.Provider
       value={{
         saveWaterGoal,
         getWaterGoal,
-        getWaterIntake
+        getWaterIntake,
+        registerWaterIntake
       }}
     >
       {children}
