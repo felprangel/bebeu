@@ -1,18 +1,21 @@
 import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
+import BigCup from '@/assets/svg/big-cup.svg'
 import Man from '@/assets/svg/man.svg'
 import { Button } from '@/components/Button'
 import { useWater } from '@/hooks/useWater'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
-import { SafeAreaView, Text, TextInput, View } from 'react-native'
+import { Modal, SafeAreaView, Text, TextInput, View } from 'react-native'
 import { Snackbar } from 'react-native-paper'
 
 export default function Weight() {
   const Water = useWater()
   const [weight, setWeight] = useState<number>(0)
+  const [goal, setGoal] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
   const [showError, setShowError] = useState<boolean>(false)
+  const [showModal, setShowModal] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>()
 
   useEffect(() => {
@@ -24,9 +27,14 @@ export default function Weight() {
   const WATER_INTAKE_ML_PER_KG_PER_DAY = 35
 
   async function calculateWaterGoal() {
+    const calculatedGoal = WATER_INTAKE_ML_PER_KG_PER_DAY * weight
+    setGoal(calculatedGoal)
+    setShowModal(true)
+  }
+
+  async function saveWaterGoal() {
     try {
       setLoading(true)
-      const goal = WATER_INTAKE_ML_PER_KG_PER_DAY * weight
       await Water.saveWaterGoal(goal)
     } catch (error) {
       setErrorMessage('Erro ao fazer login')
@@ -35,6 +43,7 @@ export default function Weight() {
       }
       setShowError(true)
     } finally {
+      setShowModal(false)
       setLoading(false)
     }
   }
@@ -47,7 +56,7 @@ export default function Weight() {
         alignItems: 'center'
       }}
     >
-      <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}>
+      <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 35, paddingBottom: 30 }}>
         Qual o seu peso atual?
       </Text>
       <View style={{ marginVertical: 40, marginHorizontal: 100, flexDirection: 'row', alignItems: 'center' }}>
@@ -104,6 +113,34 @@ export default function Weight() {
       >
         {errorMessage}
       </Snackbar>
+      <Modal visible={showModal}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginVertical: 80
+          }}
+        >
+          <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 35, paddingBottom: 30 }}>
+            Sua meta diária é:
+          </Text>
+          <View style={{ alignItems: 'center', gap: 30 }}>
+            <BigCup />
+            <Text
+              style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}
+            >
+              {goal} mL
+            </Text>
+          </View>
+          <Button
+            loading={loading}
+            text="Vamos hidratar!"
+            onPress={saveWaterGoal}
+            style={{ width: 250, paddingHorizontal: 40 }}
+          />
+        </View>
+      </Modal>
     </SafeAreaView>
   )
 }
