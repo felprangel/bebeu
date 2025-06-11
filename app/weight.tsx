@@ -42,7 +42,6 @@ export default function Weight() {
   return (
     <SafeAreaView
       style={{
-        display: 'flex',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
