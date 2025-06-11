@@ -15,7 +15,6 @@ export function Button(props: ButtonProps) {
         borderRadius: 10,
         width: 170,
         height: 50,
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         ...(props.style as object)

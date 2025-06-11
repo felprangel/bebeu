@@ -52,7 +52,6 @@ export default function Index() {
   return (
     <View
       style={{
-        display: 'flex',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -67,7 +66,6 @@ export default function Index() {
           width: 300,
           height: 400,
           gap: 30,
-          display: 'flex',
           justifyContent: 'center',
           alignItems: 'center'
         }}
