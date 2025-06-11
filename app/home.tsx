@@ -13,7 +13,7 @@ export default function Home() {
     <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 30 }}>
       <AnimatedCircularProgress
         size={300}
-        width={15}
+        width={20}
         fill={40}
         rotation={-90}
         tintColor={colors.primary}
