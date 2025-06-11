@@ -25,7 +25,7 @@ export function WaterProvider({ children }: { children: ReactNode }) {
   }
 
   async function getWaterIntake() {
-    const response = await api.get('/me/intake')
+    const response = await api.get<number>('/me/intake')
     return response.data
   }
 
