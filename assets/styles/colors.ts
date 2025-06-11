@@ -4,5 +4,6 @@ export const colors = {
     error: '#FF0000',
     contrast: '#FFFFFF'
   },
-  primary: '#1982FF'
+  primary: '#1982FF',
+  background: '#455486'
 }
