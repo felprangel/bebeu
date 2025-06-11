@@ -15,9 +15,9 @@ export default function Home() {
         size={300}
         width={15}
         fill={40}
-        tintColor="#00e0ff"
+        tintColor={colors.primary}
         onAnimationComplete={() => console.log('onAnimationComplete')}
-        backgroundColor="#3d5875"
+        backgroundColor={colors.background}
       >
         {() => (
           <>
