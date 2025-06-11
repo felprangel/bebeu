@@ -137,7 +137,7 @@ export default function Weight() {
             <Text
               style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}
             >
-              {goal} mL
+              {goal} ml
             </Text>
           </View>
           <Button
