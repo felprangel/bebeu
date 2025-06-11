@@ -12,6 +12,7 @@ export default function Home() {
   const Auth = useAuth()
   const Water = useWater()
   const [waterGoal, setWaterGoal] = useState<number>(0)
+  const [waterIntake, setWaterIntake] = useState<number>(0)
 
   useEffect(() => {
     async function getWaterGoal() {
@@ -19,6 +20,12 @@ export default function Home() {
       setWaterGoal(goal)
     }
 
+    async function getWaterIntake() {
+      const intake = await Water.getWaterIntake()
+      setWaterIntake(intake)
+    }
+
+    getWaterIntake()
     getWaterGoal()
   }, [Water])
 
@@ -27,7 +34,7 @@ export default function Home() {
       <AnimatedCircularProgress
         size={300}
         width={20}
-        fill={40}
+        fill={waterIntake}
         rotation={-90}
         tintColor={colors.primary}
         onAnimationComplete={() => console.log('onAnimationComplete')}
