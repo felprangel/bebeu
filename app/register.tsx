@@ -67,7 +67,7 @@ export default function Register() {
           alignItems: 'center'
         }}
       >
-        <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}>
+        <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 35, paddingBottom: 30 }}>
           Registre-se agora!
         </Text>
         <Formik
