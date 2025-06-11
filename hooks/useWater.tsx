@@ -6,6 +6,7 @@ interface WaterProps {
   saveWaterGoal(goal: number): Promise<void>
   getWaterGoal(): Promise<number>
   getWaterIntake(): Promise<number>
+  registerWaterIntake(): Promise<void>
 }
 
 const AuthContext = createContext({} as WaterProps)
@@ -30,7 +31,7 @@ export function WaterProvider({ children }: { children: ReactNode }) {
   }
 
   async function registerWaterIntake() {
-    await api.post('/me/intake')
+    await api.post('/me/intake', { quantity: 300 })
   }
 
   return (

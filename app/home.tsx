@@ -29,6 +29,10 @@ export default function Home() {
     getWaterGoal()
   }, [Water])
 
+  async function registerWaterIntake() {
+    await Water.registerWaterIntake()
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 30 }}>
       <AnimatedCircularProgress
@@ -51,7 +55,7 @@ export default function Home() {
           </>
         )}
       </AnimatedCircularProgress>
-      <Button text="Beber 300 ml" onPress={() => Auth.logout()} />
+      <Button text="Beber 300 ml" onPress={registerWaterIntake} />
     </SafeAreaView>
   )
 }
