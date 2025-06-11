@@ -4,6 +4,7 @@ import { useAuth } from './useAuth'
 
 interface WaterProps {
   saveWaterGoal(goal: number): Promise<void>
+  getWaterGoal(): Promise<number>
 }
 
 const AuthContext = createContext({} as WaterProps)
@@ -17,10 +18,16 @@ export function WaterProvider({ children }: { children: ReactNode }) {
     Auth.changeWaterGoalInUserDataObject(goal)
   }
 
+  async function getWaterGoal() {
+    const response = await api.get<number>('/me/goal')
+    return response.data
+  }
+
   return (
     <AuthContext.Provider
       value={{
-        saveWaterGoal
+        saveWaterGoal,
+        getWaterGoal
       }}
     >
       {children}
