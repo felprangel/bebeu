@@ -15,6 +15,7 @@ export default function Home() {
         size={300}
         width={15}
         fill={40}
+        rotation={-90}
         tintColor={colors.primary}
         onAnimationComplete={() => console.log('onAnimationComplete')}
         backgroundColor={colors.background}
