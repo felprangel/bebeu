@@ -82,7 +82,7 @@ export default function Weight() {
           <TextInput
             onChangeText={input => setWeight(parseInt(input))}
             style={{
-              width: 200,
+              width: 150,
               color: colors.text.default,
               paddingLeft: 20,
               borderWidth: 1,
