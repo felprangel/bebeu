@@ -21,12 +21,19 @@ export default function Weight() {
   useEffect(() => {
     if (!showError) return
 
-    setTimeout(() => setShowError(false), 1500)
+    setTimeout(() => setShowError(false), 2000)
   }, [showError])
 
   const WATER_INTAKE_ML_PER_KG_PER_DAY = 35
 
   async function calculateWaterGoal() {
+    if (weight < 10) {
+      setErrorMessage(
+        'O peso inserido é muito baixo para calcular a meta de ingestão de água. Por favor, verifique se digitou corretamente.'
+      )
+      setShowError(true)
+      return
+    }
     const calculatedGoal = WATER_INTAKE_ML_PER_KG_PER_DAY * weight
     setGoal(calculatedGoal)
     setShowModal(true)
