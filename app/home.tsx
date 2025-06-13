@@ -1,11 +1,13 @@
 import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
+import HappyEmoji from '@/assets/svg/happy-emoji.svg'
 import SmallCup from '@/assets/svg/small-cup.svg'
+import Trophy from '@/assets/svg/trophy.svg'
 import { Button } from '@/components/Button'
 import { useWater } from '@/hooks/useWater'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import { Modal, SafeAreaView, Text, View } from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 
 export default function Home() {
@@ -13,6 +15,7 @@ export default function Home() {
   const [waterGoal, setWaterGoal] = useState<number>(0)
   const [waterIntake, setWaterIntake] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
 
   useEffect(() => {
     if (loading) return
@@ -52,7 +55,7 @@ export default function Home() {
         fill={waterIntake}
         rotation={-90}
         tintColor={colors.primary}
-        onAnimationComplete={() => console.log('onAnimationComplete')}
+        onAnimationComplete={() => setShowSuccessModal(true)}
         backgroundColor={colors.background}
       >
         {() => (
@@ -67,6 +70,32 @@ export default function Home() {
         )}
       </AnimatedCircularProgress>
       <Button loading={loading} text="Beber 300 ml" onPress={registerWaterIntake} />
+      <Modal visible={showSuccessModal}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginVertical: 80
+          }}
+        >
+          <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 35, paddingBottom: 30 }}>
+            Meta diária atingida!
+          </Text>
+          <View style={{ alignItems: 'center', gap: 30 }}>
+            <Trophy />
+            <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingTop: 30 }}>
+              Seu rim está sorrindo agora!
+            </Text>
+            <HappyEmoji />
+          </View>
+          <Button
+            text="Voltar para o progresso"
+            onPress={() => setShowSuccessModal(false)}
+            style={{ width: 300, paddingHorizontal: 40 }}
+          />
+        </View>
+      </Modal>
     </SafeAreaView>
   )
 }
