@@ -11,8 +11,10 @@ export default function Home() {
   const Water = useWater()
   const [waterGoal, setWaterGoal] = useState<number>(0)
   const [waterIntake, setWaterIntake] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
+    if (loading) return
     async function getWaterGoal() {
       const goal = await Water.getWaterGoal()
       setWaterGoal(goal)
@@ -25,10 +27,17 @@ export default function Home() {
 
     getWaterIntake()
     getWaterGoal()
-  }, [Water])
+  }, [Water, loading])
 
   async function registerWaterIntake() {
-    await Water.registerWaterIntake()
+    try {
+      setLoading(true)
+      await Water.registerWaterIntake()
+    } catch (error) {
+      console.log(error.response?.data.message)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -53,7 +62,7 @@ export default function Home() {
           </>
         )}
       </AnimatedCircularProgress>
-      <Button text="Beber 300 ml" onPress={registerWaterIntake} />
+      <Button loading={loading} text="Beber 300 ml" onPress={registerWaterIntake} />
     </SafeAreaView>
   )
 }
