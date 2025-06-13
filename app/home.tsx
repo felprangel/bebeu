@@ -3,6 +3,7 @@ import { fontFamily } from '@/assets/styles/font-family'
 import SmallCup from '@/assets/svg/small-cup.svg'
 import { Button } from '@/components/Button'
 import { useWater } from '@/hooks/useWater'
+import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 import { SafeAreaView, Text } from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
@@ -34,7 +35,10 @@ export default function Home() {
       setLoading(true)
       await Water.registerWaterIntake()
     } catch (error) {
-      console.log(error.response?.data.message)
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.message)
+      }
+      console.log(error)
     } finally {
       setLoading(false)
     }
