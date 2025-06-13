@@ -2,14 +2,12 @@ import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
 import SmallCup from '@/assets/svg/small-cup.svg'
 import { Button } from '@/components/Button'
-import { useAuth } from '@/hooks/useAuth'
 import { useWater } from '@/hooks/useWater'
 import { useEffect, useState } from 'react'
 import { SafeAreaView, Text } from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 
 export default function Home() {
-  const Auth = useAuth()
   const Water = useWater()
   const [waterGoal, setWaterGoal] = useState<number>(0)
   const [waterIntake, setWaterIntake] = useState<number>(0)
