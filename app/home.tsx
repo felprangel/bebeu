@@ -16,6 +16,7 @@ export default function Home() {
   const [waterIntake, setWaterIntake] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
+  const [successAlreadyShown, setSuccessAlreadyShown] = useState<boolean>(false)
 
   useEffect(() => {
     if (loading) return
@@ -55,7 +56,10 @@ export default function Home() {
         fill={waterIntake}
         rotation={-90}
         tintColor={colors.primary}
-        onAnimationComplete={() => setShowSuccessModal(true)}
+        onAnimationComplete={() => {
+          if (successAlreadyShown) return
+          setShowSuccessModal(true)
+        }}
         backgroundColor={colors.background}
       >
         {() => (
@@ -91,7 +95,10 @@ export default function Home() {
           </View>
           <Button
             text="Voltar para o progresso"
-            onPress={() => setShowSuccessModal(false)}
+            onPress={() => {
+              setSuccessAlreadyShown(true)
+              setShowSuccessModal(false)
+            }}
             style={{ width: 300, paddingHorizontal: 40 }}
           />
         </View>
