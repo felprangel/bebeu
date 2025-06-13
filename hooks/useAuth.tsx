@@ -109,16 +109,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return
     }
 
-    setUserData(prev =>
-      prev
-        ? {
-            ...prev,
-            water_goal: goal
-          }
-        : undefined
-    )
+    const newUserData = {
+      ...userData,
+      water_goal: goal
+    }
 
-    await SecureStore.setItemAsync(USER_DATA_KEY, JSON.stringify(userData))
+    setUserData(newUserData)
+
+    await SecureStore.setItemAsync(USER_DATA_KEY, JSON.stringify(newUserData))
   }
 
   return (
