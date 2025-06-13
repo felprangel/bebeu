@@ -3,6 +3,7 @@ import { fontFamily } from '@/assets/styles/font-family'
 import HappyEmoji from '@/assets/svg/happy-emoji.svg'
 import SmallCup from '@/assets/svg/small-cup.svg'
 import Trophy from '@/assets/svg/trophy.svg'
+import User from '@/assets/svg/user.svg'
 import { Button } from '@/components/Button'
 import { useWater } from '@/hooks/useWater'
 import { AxiosError } from 'axios'
@@ -50,6 +51,7 @@ export default function Home() {
 
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 30 }}>
+      <User style={{ position: 'absolute', top: 70, right: 50 }} />
       <AnimatedCircularProgress
         size={300}
         width={20}
