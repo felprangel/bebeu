@@ -52,6 +52,52 @@ export default function Home() {
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 30 }}>
       <User style={{ position: 'absolute', top: 70, right: 50 }} />
+      <View
+        style={{
+          position: 'absolute',
+          top: 140,
+          right: 50,
+          borderColor: colors.primary,
+          borderWidth: 1,
+          borderRadius: 10,
+          paddingVertical: 10
+        }}
+      >
+        <View
+          style={{
+            paddingBottom: 10,
+            paddingHorizontal: 15,
+            borderBottomWidth: 1,
+            borderColor: colors.primary
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 16,
+              fontFamily: fontFamily.medium,
+              color: colors.text.default
+            }}
+          >
+            Alterar meta diária
+          </Text>
+        </View>
+        <View
+          style={{
+            paddingTop: 10,
+            paddingHorizontal: 15
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 16,
+              fontFamily: fontFamily.medium,
+              color: colors.text.default
+            }}
+          >
+            Sair
+          </Text>
+        </View>
+      </View>
       <AnimatedCircularProgress
         size={300}
         width={20}
