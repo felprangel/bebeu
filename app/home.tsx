@@ -110,7 +110,7 @@ export default function Home() {
         rotation={-90}
         tintColor={colors.primary}
         onAnimationComplete={() => {
-          if (successAlreadyShown) return
+          if (successAlreadyShown || waterIntake < waterGoal || waterGoal === 0 || waterIntake === 0) return
           setShowSuccessModal(true)
         }}
         backgroundColor={colors.background}
