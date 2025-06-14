@@ -5,6 +5,7 @@ import SmallCup from '@/assets/svg/small-cup.svg'
 import Trophy from '@/assets/svg/trophy.svg'
 import User from '@/assets/svg/user.svg'
 import { Button } from '@/components/Button'
+import { useAuth } from '@/hooks/useAuth'
 import { useWater } from '@/hooks/useWater'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
@@ -12,6 +13,7 @@ import { Modal, SafeAreaView, Text, View } from 'react-native'
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 
 export default function Home() {
+  const Auth = useAuth()
   const Water = useWater()
   const [waterGoal, setWaterGoal] = useState<number>(0)
   const [waterIntake, setWaterIntake] = useState<number>(0)
@@ -87,6 +89,7 @@ export default function Home() {
           </Text>
         </View>
         <View
+          onTouchStart={() => Auth.logout()}
           style={{
             paddingTop: 10,
             paddingHorizontal: 15
