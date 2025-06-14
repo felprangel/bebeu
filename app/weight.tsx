@@ -1,12 +1,12 @@
 import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
-import BigCup from '@/assets/svg/big-cup.svg'
 import Man from '@/assets/svg/man.svg'
 import { Button } from '@/components/Button'
+import { WaterGoalModal } from '@/components/WaterGoalModal'
 import { useWater } from '@/hooks/useWater'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
-import { Modal, SafeAreaView, Text, TextInput, View } from 'react-native'
+import { SafeAreaView, Text, TextInput, View } from 'react-native'
 import { Snackbar } from 'react-native-paper'
 
 export default function Weight() {
@@ -120,34 +120,7 @@ export default function Weight() {
       >
         {errorMessage}
       </Snackbar>
-      <Modal visible={showModal}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginVertical: 80
-          }}
-        >
-          <Text style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 35, paddingBottom: 30 }}>
-            Sua meta diária é:
-          </Text>
-          <View style={{ alignItems: 'center', gap: 30 }}>
-            <BigCup />
-            <Text
-              style={{ color: colors.text.default, fontFamily: fontFamily.medium, fontSize: 30, paddingBottom: 30 }}
-            >
-              {goal} ml
-            </Text>
-          </View>
-          <Button
-            loading={loading}
-            text="Vamos hidratar!"
-            onPress={saveWaterGoal}
-            style={{ width: 250, paddingHorizontal: 40 }}
-          />
-        </View>
-      </Modal>
+      <WaterGoalModal visible={showModal} goal={goal} loading={loading} confirmationFn={saveWaterGoal} />
     </SafeAreaView>
   )
 }
