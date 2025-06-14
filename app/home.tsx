@@ -18,6 +18,7 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(false)
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
   const [successAlreadyShown, setSuccessAlreadyShown] = useState<boolean>(false)
+  const [showUserDetails, setShowUserDetails] = useState<boolean>(false)
 
   useEffect(() => {
     if (loading) return
@@ -50,10 +51,14 @@ export default function Home() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 30 }}>
-      <User style={{ position: 'absolute', top: 70, right: 50 }} />
+    <SafeAreaView
+      onTouchStart={() => setShowUserDetails(false)}
+      style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 30 }}
+    >
+      <User onPress={() => setShowUserDetails(true)} style={{ position: 'absolute', top: 70, right: 50 }} />
       <View
         style={{
+          display: showUserDetails ? 'flex' : 'none',
           position: 'absolute',
           top: 140,
           right: 50,
