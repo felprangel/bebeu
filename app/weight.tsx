@@ -12,7 +12,7 @@ import { Snackbar } from 'react-native-paper'
 export default function Weight() {
   const Water = useWater()
   const [weight, setWeight] = useState<number>(0)
-  const [goal, setGoal] = useState<number>(0)
+  const [waterGoal, setWaterGoal] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
   const [showError, setShowError] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -35,11 +35,11 @@ export default function Weight() {
       return
     }
     const calculatedGoal = WATER_INTAKE_ML_PER_KG_PER_DAY * weight
-    setGoal(calculatedGoal)
+    setWaterGoal(calculatedGoal)
     setShowModal(true)
   }
 
-  async function saveWaterGoal() {
+  async function saveWaterGoal(goal: number) {
     try {
       setLoading(true)
       await Water.saveWaterGoal(goal)
@@ -120,7 +120,7 @@ export default function Weight() {
       >
         {errorMessage}
       </Snackbar>
-      <WaterGoalModal visible={showModal} goal={goal} loading={loading} confirmationFn={saveWaterGoal} />
+      <WaterGoalModal visible={showModal} goal={waterGoal} loading={loading} confirmationFn={saveWaterGoal} />
     </SafeAreaView>
   )
 }
