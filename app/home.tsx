@@ -5,6 +5,7 @@ import SmallCup from '@/assets/svg/small-cup.svg'
 import Trophy from '@/assets/svg/trophy.svg'
 import User from '@/assets/svg/user.svg'
 import { Button } from '@/components/Button'
+import { WaterGoalModal } from '@/components/WaterGoalModal'
 import { useAuth } from '@/hooks/useAuth'
 import { useWater } from '@/hooks/useWater'
 import { AxiosError } from 'axios'
@@ -19,6 +20,7 @@ export default function Home() {
   const [waterIntake, setWaterIntake] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
+  const [showWaterModal, setShowWaterModal] = useState<boolean>(false)
   const [successAlreadyShown, setSuccessAlreadyShown] = useState<boolean>(false)
   const [showUserDetails, setShowUserDetails] = useState<boolean>(false)
 
@@ -52,6 +54,21 @@ export default function Home() {
     }
   }
 
+  async function changeWaterGoal(goal: number) {
+    try {
+      setLoading(true)
+      await Water.saveWaterGoal(goal)
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.message)
+      }
+      console.log(error)
+    } finally {
+      setShowWaterModal(false)
+      setLoading(false)
+    }
+  }
+
   return (
     <SafeAreaView
       onTouchStart={() => setShowUserDetails(false)}
@@ -71,6 +88,7 @@ export default function Home() {
         }}
       >
         <View
+          onTouchStart={() => setShowWaterModal(true)}
           style={{
             paddingBottom: 10,
             paddingHorizontal: 15,
@@ -159,6 +177,7 @@ export default function Home() {
           />
         </View>
       </Modal>
+      <WaterGoalModal visible={showWaterModal} goal={waterGoal} loading={loading} confirmationFn={changeWaterGoal} />
     </SafeAreaView>
   )
 }
