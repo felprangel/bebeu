@@ -84,6 +84,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await SecureStore.setItemAsync(USER_DATA_KEY, JSON.stringify(userData))
     await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
     setToken(apiToken)
+    setUserData(userData)
   }
 
   async function register(data: RegisterData): Promise<void> {
@@ -92,6 +93,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     await SecureStore.setItemAsync(TOKEN_KEY, apiToken)
     setToken(apiToken)
+    setUserData(userData)
   }
 
   async function logout() {
