@@ -52,7 +52,7 @@ export function WaterGoalModal(props: WaterGoalProps) {
         <Button
           loading={props.loading}
           text="Vamos hidratar!"
-          onPress={() => props.confirmationFn(goalInput)}
+          onPress={() => props.confirmationFn(goalInput || props.goal)}
           style={{ width: 250, paddingHorizontal: 40 }}
         />
       </View>
