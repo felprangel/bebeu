@@ -4,7 +4,7 @@ import * as SecureStore from 'expo-secure-store'
 
 export const api = axios.create({
   // TODO: url estática temporáriamente, não consegui fazer os envs funcionarem
-  baseURL: 'https://bookmark-api.felpo.dev'
+  baseURL: 'http://bebeu-api.felpo.dev'
 })
 
 api.interceptors.request.use(
