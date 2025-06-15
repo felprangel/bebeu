@@ -1,9 +1,11 @@
 import { colors } from '@/assets/styles/colors'
 import { fontFamily } from '@/assets/styles/font-family'
 import HappyEmoji from '@/assets/svg/happy-emoji.svg'
+import Logout from '@/assets/svg/logout.svg'
 import SmallCup from '@/assets/svg/small-cup.svg'
 import Trophy from '@/assets/svg/trophy.svg'
 import User from '@/assets/svg/user.svg'
+import WaterDrop from '@/assets/svg/water-drop.svg'
 import { Button } from '@/components/Button'
 import { WaterGoalModal } from '@/components/WaterGoalModal'
 import { useAuth } from '@/hooks/useAuth'
@@ -90,12 +92,16 @@ export default function Home() {
         <View
           onTouchStart={() => setShowWaterModal(true)}
           style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 10,
             paddingBottom: 10,
             paddingHorizontal: 15,
             borderBottomWidth: 1,
             borderColor: colors.primary
           }}
         >
+          <WaterDrop />
           <Text
             style={{
               fontSize: 16,
@@ -109,10 +115,14 @@ export default function Home() {
         <View
           onTouchStart={() => Auth.logout()}
           style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 10,
             paddingTop: 10,
             paddingHorizontal: 15
           }}
         >
+          <Logout />
           <Text
             style={{
               fontSize: 16,
