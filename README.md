@@ -1,50 +1,21 @@
-# Welcome to your Expo app 👋
+![logo](./assets/svg/logo.svg)
+# Bebeu?
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Bebeu é um aplicativo mobile desenvolvido com React Native e Expo, projetado para ajudar os usuários a monitorarem e manterem sua ingestão diária de água. Com uma interface simples e intuitiva, o app permite registrar a quantidade de água consumida ao longo do dia e definir metas personalizadas.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Funcionalidades
 
-   ```bash
-   npm install
-   ```
+- **Registro de Consumo**: Permite ao usuário adicionar rapidamente a quantidade de água ingerida.
+- **Meta Diária Personalizável**: O usuário pode definir sua meta diária de consumo de água com base em suas necessidades.
+- **Gráfico de Progresso**: Visualização do progresso diário e histórico de consumo em gráficos simples e informativos.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🛠️ Tecnologias Utilizadas
 
-In the output, you'll find options to open the app in a
+- **React Native**: Biblioteca para desenvolvimento de aplicativos móveis com JavaScript.
+- **Expo**: Plataforma e conjunto de ferramentas que facilita o desenvolvimento e a publicação de apps React Native.
+- **AsyncStorage**: Armazenamento local para salvar os dados de consumo do usuário.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
